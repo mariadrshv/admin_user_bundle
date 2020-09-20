@@ -1,0 +1,61 @@
+security:
+  login:
+    username: 'Username or email address'
+    forgot_password: 'Forgot password?'
+
+form:
+  roles: 'Roles'
+  enabled: 'Enabled'
+  new_password: 'New password'
+  new_password_confirmation: 'Repeat new password'
+  username: 'Username'
+  email: 'Email'
+
+resetting:
+  check_email: |
+    An email has been sent. It contains a link you must click to reset your password.
+    Note: You can only request a new password once within 2 hours.
+
+    If you don't get an email check your spam folder or try again.
+  request:
+    username: 'Username or email address'
+    submit: 'Reset password'
+  reset:
+    submit: 'Change password'
+  flash:
+    success: 'The password has been reset successfully.'
+  email:
+    subject: 'Reset Password'
+    message: |
+      Hello %username%!
+
+      To reset your password - please visit %confirmationUrl%
+
+      Regards,
+      the Team.
+
+profile:
+  menu:
+    list: 'User list'
+    create: 'Create new user'
+  list:
+    create_new: 'Create new user'
+    home_return: 'Return to homepage'
+  create:
+    submit: 'Create'
+    list_return: 'Return to list'
+  edit:
+    list_return: 'Return to list'
+    submit: 'Update'
+  invite:
+    email:
+      subject: 'Welcome %username%!'
+      message: |
+        Hello %username%!
+
+        You have been invited to %host%. To finish registration your account - please visit %confirmationUrl%
+
+        This link can only be used once to registration your account.
+
+        Regards,
+        the Team.

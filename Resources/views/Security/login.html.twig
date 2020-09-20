@@ -1,0 +1,39 @@
+{% extends '@AppyfuriousAdminUser/login.html.twig' %}
+{% trans_default_domain 'translation' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<div class="admin-user-form admin-user-form-wrapper" class="admin-user-form">
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <div class="form-group admin-user-form-row">
+            <label for="inputData">Login</label>
+            <input type="text" value="{{ last_username }}" name="data" id="inputData" class="form-control" required autofocus>
+        </div>
+
+        <div class="form-group admin-user-form-row">
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" required>
+            <a href="{{ path('appyfurious_admin_resetting') }}" class="admin-user-form-forgot-link">{{ 'security.login.forgot_password'|trans }}</a>
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+
+        <button class="btn btn-lg btn-primary float-right" type="submit">
+            Sign in
+        </button>
+    </form>
+</div>
+{% endblock %}

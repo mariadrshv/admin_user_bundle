@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ page_title|default('Login') }}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/appyfuriousadminuser/login-style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/appyfuriousadminuser/admin_user.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/appyfuriousadminuser/bootstrap/css/bootstrap.min.css') }}"
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends '@AppyfuriousAdminUser/base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% trans_default_domain 'translation' %}
+
+{% block title %}Admin | Edit User{% endblock %}
+
+{% block body %}
+<div class="admin-user-form-wrapper">
+    {{ form_start(form, {'attr':{'class': 'admin-user-form'}}) }}
+    {{ form_widget(form) }}
+    <div class="float-left">
+        <a href="{{ path('appyfurious_admin_user_list') }}" class="btn btn-outline-secondary"
+           role="button">{{ 'profile.edit.list_return'|trans }}</a>
+    </div>
+    <div class="float-right">
+        <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+               value="{{ 'profile.edit.submit'|trans }}" />
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+services:
+  Appyfurious\AdminUserBundle\Controller\SecurityController:
+    autowire: true
+    class: Appyfurious\AdminUserBundle\Controller\SecurityController
+    tags:
+      - {name: 'controller.service_arguments'}
+      - {name: 'controller.service_subscriber'}
+
+  appyfurious_admin_user.authenticator.login:
+    class: Appyfurious\AdminUserBundle\Security\LoginFormAuthenticator
+    arguments:
+      - '@Symfony\Component\Routing\Generator\UrlGeneratorInterface'
+      - '@Symfony\Component\Security\Csrf\CsrfTokenManagerInterface'
+      - '@Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface'
+
+  Appyfurious\AdminUserBundle\Controller\AdminUserController:
+    autowire: true
+    class: Appyfurious\AdminUserBundle\Controller\AdminUserController
+    arguments:
+      - '@Doctrine\ORM\EntityManagerInterface'
+      - '@admin_user.mailer'
+    tags:
+      - {name: 'controller.service_arguments'}
+      - {name: 'controller.service_subscriber'}
+
+  Appyfurious\AdminUserBundle\Controller\ResettingController:
+    autowire: true
+    class: Appyfurious\AdminUserBundle\Controller\ResettingController
+    arguments:
+      - '@Doctrine\ORM\EntityManagerInterface'
+      - '@admin_user.mailer'
+    tags:
+      - {name: 'controller.service_arguments'}
+      - {name: 'controller.service_subscriber'}
+
+  user.profile.form.type:
+    class: Appyfurious\AdminUserBundle\Form\EditUserType
+    arguments:
+      - '%security.role_hierarchy.roles%'
+    tags: [{name: form.type, alias: user_profile}]
+
+  admin_user.mailer:
+    class: Appyfurious\AdminUserBundle\Service\MailerService
+    arguments:
+      - '@Swift_Mailer'
+      - '%appyfurious_admin_user.mailer_user%'
+      - '@Twig\Environment'
+
+  Appyfurious\AdminUserBundle\Command\CreateAdminUserCommand:
+    class: Appyfurious\AdminUserBundle\Command\CreateAdminUserCommand
+    arguments:
+      - '@doctrine.orm.entity_manager'
+      - '@Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface'
+    tags:
+      - { name: console.command }

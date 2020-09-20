@@ -1,0 +1,23 @@
+{% extends '@AppyfuriousAdminUser/base.html.twig' %}
+{% trans_default_domain 'translation' %}
+
+{% block title %}Reset password{% endblock %}
+
+{% block body %}
+<div class="admin-user-form-wrapper">
+    <form action="{{ path('appyfurious_admin_resetting_send_email') }}" method="POST" class="admin-user-form">
+        <div class="admin-user-form-row">
+            <label for="username" class="admin-user-form-label" title="{{ 'resetting.request.username'|trans }}">
+                <span class="iconify" data-icon="octicon:person-24" data-inline="false"></span>
+            </label>
+            <input type="text" id="username" class="admin-user-form-input" placeholder="{{ 'resetting.request.username'|trans }}..."
+                   name="username" required="required" autocomplete="username" />
+        </div>
+
+        <div class="admin-user-form-row float-right">
+            <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+                   value="{{ 'resetting.request.submit'|trans }}" />
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends '@AppyfuriousAdminUser/base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% trans_default_domain 'translation' %}
+
+{% block title %}Admin | Reset Password{% endblock %}
+
+{% block body %}
+    <div class="admin-user-form-wrapper">
+        <div class="admin-user-form">
+            {{ form_start(form, { 'action': path('appyfurious_admin_reset_pass', {'token': token}), 'attr': { 'class': 'appyfurious_admin_reset_pass' } }) }}
+            {{ form_widget(form) }}
+            <div class="float-right">
+                <input type="submit" class="btn btn-primary" value="{{ 'resetting.reset.submit'|trans }}" />
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

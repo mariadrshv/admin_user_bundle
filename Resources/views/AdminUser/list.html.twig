@@ -1,0 +1,76 @@
+{% extends '@AppyfuriousAdminUser/base.html.twig' %}
+{% trans_default_domain 'translation' %}
+
+{% block title %}Admin | User List{% endblock %}
+
+{% block body %}
+<div class="admin-user-layout">
+    <div class="container">
+        <div class="float-right">
+            {% if is_granted('ROLE_ADMIN_USER_CREATE') %}
+                <a href="{{ path('appyfurious_admin_user_create') }}" class="btn btn-outline-primary"
+                   role="button">{{ 'Create new user' }}</a>
+            {% endif %}
+            <a href="{{ path('appyfurious_admin_homepage') }}" class="btn btn-outline-secondary"
+               role="button">{{ "Return to homepage" }}</a>
+        </div>
+        <h1>Admin User list</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Status</th>
+                <th>Last login</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>
+                        {% if is_granted('ROLE_ADMIN_USER_EDIT') %}
+                            &nbsp; <a href="{{ path('appyfurious_admin_user_edit', {userId: user.id}) }}"
+                                      class="btn btn-sm btn-outline-secondary" role="button">edit</a>
+                        {% endif %}
+                    </td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|join("\n")|nl2br }}</td>
+                    <td>
+                        {% if user.enabled %}
+                            <span class="badge badge-success">enabled</span>
+                        {% else %}
+                            <span class="badge badge-danger">disabled</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ user.lastLogin|date('Y-m-d H:i:s') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        (function() {
+            if (window.ClipboardJS !== undefined) {
+                var el = document.createElement('span');
+                el.appendChild(document.createTextNode('copied!'));
+                el.setAttribute('class', 'btn btn-sm btn-dark');
+                el.style.position = 'absolute';
+                el.style.top = '0';
+                new ClipboardJS('.title-clipboard', {
+                    text: function (trigger) {
+                        el.style.left = (trigger.offsetWidth + 10) + 'px';
+                        trigger.style.position = 'relative';
+                        setTimeout(function() { trigger.appendChild(el); }, 100);
+                        setTimeout(function() { el.remove(); }, 1500);
+                        return trigger.getAttribute('title');
+                    }
+                });
+            }
+        })();
+    </script>
+</div>
+{% endblock %}

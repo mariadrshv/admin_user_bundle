@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ asset('bundles/appyfuriousadminuser/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/appyfuriousadminuser/admin_user.css') }}">
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+        <script src="{{ asset('bundles/appyfuriousadminuser/clipboard/clipboard.min.js') }}"></script>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

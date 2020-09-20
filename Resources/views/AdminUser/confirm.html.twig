@@ -1,0 +1,18 @@
+{% extends '@AppyfuriousAdminUser/base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% trans_default_domain 'translation' %}
+
+
+{% block title %}Admin | Confirm User{% endblock %}
+
+{% block body %}
+<div class="admin-user-form-wrapper">
+    {{ form_start(form, {'attr':{'class': 'admin-user-form'}}) }}
+    {{ form_widget(form) }}
+    <div class="float-right">
+        <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+               value="{{ 'profile.create.submit'|trans }}" />
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends '@AppyfuriousAdminUser/base.html.twig' %}
+{% trans_default_domain 'translation' %}
+
+{% block title %}Admin | Create User{% endblock %}
+
+{% block body %}
+<div class="admin-user-layout">
+    <div class="admin-user-form-wrapper">
+        {{ form_start(form, {'attr':{'class': 'admin-user-form'}}) }}
+        <legend class="col-form-label required">Email</legend>
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+
+        <legend class="col-form-label required">Username</legend>
+        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+
+
+        <legend class="col-form-label required">Roles</legend>
+        <div class="form-roles">
+            <div>
+                <input type="checkbox" id="button_role_admin" name="button_role" class="form-check-input" value="ROLE_ADMIN" />
+                <label class="form-check-label" for="button_role_admin">ROLE_ADMIN</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="button_role_super_admin" name="button_role" class="form-check-input" value="ROLE_SUPER_ADMIN" />
+                <label class="form-check-label" for="button_role_super_admin" >ROLE_SUPER_ADMIN</label>
+            </div>
+        </div>
+
+        <div class="float-left">
+            <a href="{{ path('appyfurious_admin_user_list') }}" class="btn btn-outline-secondary"
+               role="button">{{ 'profile.create.list_return'|trans }}</a>
+        </div>
+        <div class="float-right">
+            <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+                   value="{{ 'profile.create.submit'|trans }}" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+
+
+{% endblock %}
