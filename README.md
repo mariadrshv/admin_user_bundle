@@ -38,3 +38,13 @@ AdminUserBundle
       prefix:  /admin/
 
 Для корректного отображение не забыть вызвать `bin/console c:c`, `bin/console assets:install`.
+
+## Commands
+
+Создать нового пользователя: `bin/console create-adminuser username email` (username и email - данные для создаваемого пользователя)
+
+Добавить роль пользователю: `bin/console add-role username role` (username и role - данные пользователя)
+
+Удалить роль у пользователю: `bin/console remove-role username role` (username и role - данные пользователя)
+
+Поменять пароль пользователю `bin/console change-pass username new_password` (username и new_password - данные пользователя)
