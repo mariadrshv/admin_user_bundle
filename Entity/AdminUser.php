@@ -149,6 +149,16 @@ class AdminUser implements UserInterface
             $this->roles[] = $role;
         }
     }
+    
+    public function removeRole(string $role): void
+    {
+        $role = strtoupper($role);
+
+        if (in_array($role, $this->roles, true)) {
+            $roleKey = array_search($role, $this->roles);
+            unset($this->roles[$roleKey]);
+        }
+    }
 
     public function isSuperAdmin(): bool
     {
